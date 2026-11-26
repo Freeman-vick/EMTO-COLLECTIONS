@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore shoes, innerwear and duvets at EMTO COLLECTIONS in Chogoria. Contact us on WhatsApp for current styles and availability.">
+  <title>EMTO COLLECTIONS | Everyday essentials</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement-bar">
+    <span>Need help ordering?</span>
+    <a href="https://wa.me/254704787531" target="_blank" rel="noopener noreferrer">Chat with us on WhatsApp</a>
+  </div>
+
+  <header class="header">
+    <div class="header-main">
+      <h1 class="brand"><a href="index.html">EMTO COLLECTIONS</a></h1>
+      <form class="search-bar" role="search" action="index.html#products" method="get">
+        <input type="search" name="q" placeholder="Search products and collections" aria-label="Search products and collections">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="index.html" aria-current="page">HOME</a>
+      <a href="Shoes.html">SHOES</a>
+      <a href="innerwear.html">PANTIES &amp; BOXERS</a>
+      <a href="duvets.html">DUVETS</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">EMTO COLLECTIONS · CHOGORIA</p>
+        <h2>Everyday essentials, chosen with care.</h2>
+        <p>Explore shoes, comfortable innerwear and colorful duvets. Contact us for current styles and availability.</p>
+        <div class="hero-actions">
+          <a href="#categories" class="shop-button">Explore collections</a>
+          <a href="https://wa.me/254704787531" class="text-link" target="_blank" rel="noopener noreferrer">Ask us on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="hero-slideshow" data-carousel role="region" aria-label="Featured collection photos">
+        <img class="hero-slide is-active" src="images/shoes.jpg" alt="White sport shoes">
+        <img class="hero-slide" src="images/Innerwear.jpg" alt="Patterned boxers">
+        <img class="hero-slide" src="images/duvets.jpg" alt="Colorful duvet sets">
+        <button class="carousel-control carousel-prev" type="button" data-carousel-prev aria-label="Previous photo">‹</button>
+        <button class="carousel-control carousel-next" type="button" data-carousel-next aria-label="Next photo">›</button>
+        <div class="carousel-dots" aria-label="Choose a photo">
+          <button class="carousel-dot is-active" type="button" data-carousel-dot="0" aria-label="Show shoes photo" aria-current="true"></button>
+          <button class="carousel-dot" type="button" data-carousel-dot="1" aria-label="Show innerwear photo"></button>
+          <button class="carousel-dot" type="button" data-carousel-dot="2" aria-label="Show duvet photo"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="category-section" id="categories">
+      <div class="section-heading">
+        <p class="hero-eyebrow">Find your department</p>
+        <h2>Shop by Category</h2>
+        <p>Choose a collection to explore, or contact us about current styles.</p>
+        <p id="search-status" aria-live="polite"></p>
+      </div>
+
+      <div class="category-grid">
+        <article class="category-card" data-search="shoes footwear sneakers trainers">
+          <img src="images/shoes.jpg" alt="White sport shoes">
+          <div class="category-card-content">
+            <h3>Shoes</h3>
+            <p>Explore the shoe collection and ask us about current styles and sizes.</p>
+            <a href="Shoes.html" class="shop-button">Explore shoes</a>
+          </div>
+        </article>
+
+        <article class="category-card" data-search="panties boxers underwear innerwear briefs">
+          <img src="images/Innerwear.jpg" alt="Patterned boxers">
+          <div class="category-card-content">
+            <h3>Panties &amp; Boxers</h3>
+            <p>Browse the innerwear collection and ask about current styles and sizes.</p>
+            <a href="innerwear.html" class="shop-button">Explore innerwear</a>
+          </div>
+        </article>
+
+        <article class="category-card" data-search="duvets bedding bed linen home">
+          <img src="images/duvets.jpg" alt="Colorful duvet sets">
+          <div class="category-card-content">
+            <h3>Duvets</h3>
+            <p>Explore duvet designs for your home and ask us about current options.</p>
+            <a href="duvets.html" class="shop-button">Explore duvets</a>
+          </div>
+        </article>
+      </div>
+      <p class="search-empty" id="search-empty" hidden>No collections matched that search. Try “shoes”, “innerwear” or “duvets”.</p>
+    </section>
+
+    <section class="shop-section" id="products" data-product-catalog data-category="all" aria-labelledby="products-title">
+      <div class="shop-section-heading">
+        <p class="hero-eyebrow">SHOP THE COLLECTION</p>
+        <h2 id="products-title">Available products</h2>
+        <p>Browse current items, check the listed stock, and send your order through WhatsApp.</p>
+      </div>
+      <div class="product-grid-shop" data-product-list></div>
+      <p class="catalog-empty" data-product-empty hidden></p>
+    </section>
+
+    <section class="contact" id="contact">
+      <p class="hero-eyebrow">Personal assistance</p>
+      <h2>Let’s find what you need.</h2>
+      <p>Ask about current products, sizes, designs and prices. We’re based in Chogoria.</p>
+      <p>Phone: <a href="tel:+254704787531">0704 787 531</a></p>
+      <a href="https://wa.me/254704787531" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">Contact us on WhatsApp</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <h3>EMTO COLLECTIONS</h3>
+    <p>Shoes, innerwear and home essentials in Chogoria.</p>
+    <p><a href="index.html#contact">Contact us</a> · <a href="login.html">Admin sign in</a> · © 2026 EMTO COLLECTIONS</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
+

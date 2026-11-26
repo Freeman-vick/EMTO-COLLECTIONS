@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to manage EMTO COLLECTIONS inventory.">
+  <title>Admin sign in | EMTO COLLECTIONS</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+  <div class="announcement-bar"><span>EMTO COLLECTIONS · STORE ADMIN</span></div>
+  <main class="login-shell">
+    <section class="login-card" aria-labelledby="login-title">
+      <a class="login-brand" href="index.html">EMTO COLLECTIONS</a>
+      <p class="hero-eyebrow">SECURE ADMIN AREA</p>
+      <h1 id="login-title">Sign in</h1>
+      <p class="login-intro">Enter your admin password to manage products and stock.</p>
+      <form data-login-form>
+        <label for="admin-password">Admin password</label>
+        <input id="admin-password" name="password" type="password" autocomplete="current-password" required autofocus>
+        <p class="login-error" data-login-error role="alert"></p>
+        <button class="shop-button" type="submit">Sign in to inventory</button>
+      </form>
+      <p class="login-help">Sign-in sessions expire after 8 hours. If the shop server is not running, start it from the project folder first.</p>
+      <a class="login-back" href="index.html">← Return to the shop</a>
+    </section>
+  </main>
+  <script src="login.js"></script>
+</body>
+</html>

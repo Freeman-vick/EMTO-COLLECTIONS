@@ -1,0 +1,4 @@
+.env.local
+data/inventory.json
+data/inventory.json.tmp
+node_modules/
