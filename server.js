@@ -2,6 +2,7 @@ const http = require("node:http");
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
+const { isValidAdminPassword } = require("./lib/password-policy");
 
 const ROOT = __dirname;
 const DATA_DIR = path.join(ROOT, "data");
@@ -29,8 +30,8 @@ function readLocalConfig() {
 readLocalConfig();
 const password = process.env.EMTO_ADMIN_PASSWORD
   || (process.env.EMTO_ADMIN_PASSWORD_B64 ? Buffer.from(process.env.EMTO_ADMIN_PASSWORD_B64, "base64").toString("utf8") : "");
-if (password.length < 16) {
-  console.error("Admin password missing or too short. Run setup-admin.ps1, then restart the server.");
+if (!isValidAdminPassword(password)) {
+  console.error("Admin password missing or shorter than 8 characters. Run setup-admin.ps1, then restart the server.");
   process.exit(1);
 }
 const passwordSalt = crypto.randomBytes(16);

@@ -1,13 +1,13 @@
 $ErrorActionPreference = 'Stop'
-$securePassword = Read-Host 'Create an admin password (at least 16 characters)' -AsSecureString
+$securePassword = Read-Host 'Create an admin password (at least 8 characters)' -AsSecureString
 $confirmPassword = Read-Host 'Enter it again to confirm' -AsSecureString
 $passwordPointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($securePassword)
 $confirmPointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($confirmPassword)
 try {
     $plainPassword = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($passwordPointer)
     $plainConfirmation = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($confirmPointer)
-    if ($plainPassword.Length -lt 16) {
-        throw 'Password must be at least 16 characters long.'
+    if ($plainPassword.Length -lt 8) {
+        throw 'Password must be at least 8 characters long.'
     }
     if ($plainPassword -cne $plainConfirmation) {
         throw 'The passwords do not match. Run setup again.'

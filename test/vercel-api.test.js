@@ -10,6 +10,7 @@ const {
 const sessionRoute = require("../api/admin/session");
 const adminProductsRoute = require("../api/admin/products");
 const adminPageRoute = require("../api/admin/page");
+const { isValidAdminPassword } = require("../lib/password-policy");
 
 process.env.EMTO_SESSION_SECRET = "unit-test-session-secret-with-more-than-32-characters";
 
@@ -22,6 +23,12 @@ const product = {
   description: "",
   image: "images/shoes.jpg",
 };
+
+test("requires admin passwords to be at least 8 characters", () => {
+  assert.equal(isValidAdminPassword("short7!"), false);
+  assert.equal(isValidAdminPassword("longer8!"), true);
+  assert.equal(isValidAdminPassword(""), false);
+});
 
 function response() {
   return {

@@ -1,4 +1,5 @@
 const crypto = require("node:crypto");
+const { isValidAdminPassword } = require("../../lib/password-policy");
 const {
   createSessionCookie,
   readJson,
@@ -18,7 +19,7 @@ module.exports = withErrors(async (req, res) => {
 
   const body = await readJson(req);
   const password = process.env.EMTO_ADMIN_PASSWORD;
-  if (!password || password.length < 16) throw new Error("EMTO_ADMIN_PASSWORD is missing or too short.");
+  if (!isValidAdminPassword(password)) throw new Error("EMTO_ADMIN_PASSWORD is missing or shorter than 8 characters.");
   const supplied = Buffer.from(String(body?.password || ""));
   const expected = Buffer.from(password);
   const valid = supplied.length === expected.length
