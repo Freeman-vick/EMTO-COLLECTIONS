@@ -2,3 +2,4 @@
 data/inventory.json
 data/inventory.json.tmp
 node_modules/
+.vercel/

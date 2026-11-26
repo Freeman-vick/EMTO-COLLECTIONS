@@ -169,6 +169,19 @@ async function handleApi(req, res, url) {
     if (token) sessions.delete(token);
     return sendJson(res, 200, { ok: true }, { "Set-Cookie": `${COOKIE}=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0` });
   }
+  if (req.method === "POST" && url.pathname === "/api/admin/image") {
+    if (!authorized(req, res)) return;
+    if (!sameOrigin(req)) return sendJson(res, 403, { error: "Request origin rejected." });
+    let body;
+    try { body = await readBody(req); }
+    catch (error) { return sendJson(res, error.status || 400, { error: error.message }); }
+    const image = String(body?.image || "");
+    const match = /^data:image\/(?:jpeg|png|webp);base64,([A-Za-z0-9+/]+={0,2})$/.exec(image);
+    if (!match || Buffer.from(match[1], "base64").length > 2 * 1024 * 1024) {
+      return sendJson(res, 400, { error: "Photo is invalid or too large. Choose a smaller image." });
+    }
+    return sendJson(res, 200, { image });
+  }
   if (url.pathname === "/api/admin/products") {
     if (!authorized(req, res)) return;
     if (req.method === "GET") return sendJson(res, 200, inventory);

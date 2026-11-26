@@ -55,10 +55,30 @@
 
   async function persistInventory(products) {
     if (!serverMode) throw new Error("Start the shop server before editing inventory.");
+    const preparedProducts = [];
+    for (const product of products) {
+      if (typeof product.image !== "string" || !product.image.startsWith("data:image/")) {
+        preparedProducts.push(product);
+        continue;
+      }
+      const upload = await fetch("/api/admin/image", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ image: product.image }),
+      });
+      if (upload.status === 401) {
+        location.replace("/login.html");
+        throw new Error("Your sign-in expired. Please sign in again.");
+      }
+      const uploaded = await upload.json();
+      if (!upload.ok) throw new Error(uploaded.error || "Could not upload the product photo.");
+      if (typeof uploaded.image !== "string") throw new Error("Could not upload the product photo.");
+      preparedProducts.push({ ...product, image: uploaded.image });
+    }
     const response = await fetch("/api/admin/products", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ products }),
+      body: JSON.stringify({ products: preparedProducts }),
     });
     if (response.status === 401) {
       location.replace("/login.html");

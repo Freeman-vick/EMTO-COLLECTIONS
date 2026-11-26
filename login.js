@@ -7,8 +7,10 @@
   }
   fetch("/api/admin/session", { cache: "no-store" }).then((response) => {
     if (response.ok) location.replace("/admin.html");
-    else if (response.status !== 401) error.textContent = "The protected shop server is not running. Start it from the project folder first.";
-  }).catch(() => {});
+    else if (response.status !== 401) error.textContent = "The shop service is unavailable. Start the local server or contact the site administrator.";
+  }).catch(() => {
+    error.textContent = "Could not connect to the shop service. Start the local server or try again later.";
+  });
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -22,11 +24,11 @@
         body: JSON.stringify({ password: form.elements.password.value }),
       });
       const result = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(result.error || "The protected shop server is not running. Start it from the project folder first.");
+      if (!response.ok) throw new Error(result.error || "The shop service is unavailable. Start the local server or contact the site administrator.");
       location.replace("/admin.html");
     } catch (err) {
       error.textContent = err.message.includes("Failed to fetch")
-        ? "The shop server is not running. Start it from the project folder, then try again."
+        ? "Could not connect to the shop service. Start the local server or try again later."
         : err.message;
     } finally {
       button.disabled = false;
